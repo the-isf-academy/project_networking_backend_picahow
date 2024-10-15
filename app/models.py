@@ -8,6 +8,7 @@ class Question(Model):
     option_b = StringField()
     option_c = StringField()
     option_d = StringField()
+    correct_answer = StringField()
 
     def json_response(self):
         
@@ -17,7 +18,7 @@ class Question(Model):
             'option_a': self.option_a,
             'option_b': self.option_b,
             'option_c': self.option_c,
-            'option_d': self.option_d
+            'option_d': self.option_d,
         }
 
 
