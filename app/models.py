@@ -1,5 +1,3 @@
-# models.py
-
 from banjo.models import Model, StringField, IntegerField, FloatField, BooleanField
 
 class Question(Model):
@@ -9,9 +7,9 @@ class Question(Model):
     option_c = StringField()
     option_d = StringField()
     correct_answer = StringField()
+    answered_correctly = BooleanField(default=False) 
 
     def json_response(self):
-        
         return {
             'id': self.id,
             'question_statement': self.question_statement,
@@ -20,6 +18,3 @@ class Question(Model):
             'option_c': self.option_c,
             'option_d': self.option_d,
         }
-
-
-    
