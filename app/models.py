@@ -7,7 +7,8 @@ class Question(Model):
     option_c = StringField()
     option_d = StringField()
     correct_answer = StringField()
-    answered_correctly = BooleanField(default=False) 
+    answered_correctly = BooleanField(default=False)
+    prize_money = IntegerField(default=0)  
 
     def json_response(self):
         return {
@@ -17,4 +18,5 @@ class Question(Model):
             'option_b': self.option_b,
             'option_c': self.option_c,
             'option_d': self.option_d,
+            'prize_money': self.prize_money
         }
