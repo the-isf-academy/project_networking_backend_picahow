@@ -8,10 +8,10 @@ PRIZE_MONEY = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 
 @route_get(BASE_URL + 'start_game')
 def start_session(args):
     Question.objects.all().update(answered_correctly=False)
-    return {'Welcome To Who Wants To Be a Millionaire!': 'Type /next_question after /millionaire in the URL to get started! To answer a question, type /answer after millionaire with answer as your arg to answer. To get a hint, use /get_hint with the id of the question. For questions without a hint, feel free to add your own hint to help the experience of other players with /add_hint'}
+    return {'Welcome To Who Wants To Be a Millionaire!': 'Type /random_question after /millionaire in the URL to get started! To answer a question, type /answer after millionaire with answer as your arg to answer. To get a hint, use /get_hint with the id of the question. For questions without a hint, feel free to add your own hint to help the experience of other players with /replace_hint'}
 
-@route_get(BASE_URL + 'next_question')
-def next_question(args):
+@route_get(BASE_URL + 'random_question')
+def random_question(args):
     questions = Question.objects.filter(answered_correctly=False)  
 
     if not questions:
@@ -98,8 +98,8 @@ def get_hint(args):
     question_response['hint'] = question.hint
     return question_response
 
-@route_post(BASE_URL + 'add_hint', args={'id': int, 'hint': str})
-def add_hint(args):
+@route_post(BASE_URL + 'replace_hint', args={'id': int, 'hint': str})
+def replace_hint(args):
     if not args['id'] or not args['hint']:
         return {'error': 'Missing question_id or hint'}
 

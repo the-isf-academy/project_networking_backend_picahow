@@ -17,98 +17,14 @@ The API allows users to play a quiz game similar to the popular TV show "Who Wan
 
 ## API Endpoints
 
-|
- Endpoint 
-|
- Method 
-|
- Description 
-|
- Arguments 
-|
-|
-----------
-|
---------
-|
--------------
-|
------------
-|
-|
-`/millionaire/start_game`
-|
- GET 
-|
- Starts a new game session 
-|
- None 
-|
-|
-`/millionaire/next_question`
-|
- GET 
-|
- Retrieves the next random question 
-|
- None 
-|
-|
-`/millionaire/answer`
-|
- POST 
-|
- Submit an answer to a question 
-|
-`id`
- (int), 
-`answer`
- (str) 
-|
-|
-`/millionaire/add_question`
-|
- POST 
-|
- Add a new question to the database 
-|
-`question_statement`
- (str), 
-`option_a`
- (str), 
-`option_b`
- (str), 
-`option_c`
- (str), 
-`option_d`
- (str), 
-`correct_answer`
- (str), 
-`hint`
- (str) 
-|
-|
-`/millionaire/get_hint`
-|
- GET 
-|
- Get a hint for a specific question 
-|
-`id`
- (int) 
-|
-|
-`/millionaire/add_hint`
-|
- POST 
-|
- Add a hint to an existing question 
-|
-`id`
- (int), 
-`hint`
- (str) 
-|
+|    Route Name   	| HTTP Method 	|                                                                          Payload                                                                          	|                   Description                  	|
+|:---------------:	|-------------	|:---------------------------------------------------------------------------------------------------------------------------------------------------------:	|:----------------------------------------------:	|
+|    start_game   	|     GET     	|                                                                            None                                                                           	| Starts a new game session.                     	|
+| random_question 	|     GET     	|                                                                            None                                                                           	| Retrieves a random question from the database. 	|
+|      answer     	|     POST    	|                                                                'id'(int),<br>'answer'(str)                                                                	| Submits an answer to a question.               	|
+|   add_question  	|     POST    	| 'question_statement'(str), <br>'option_a'(str), <br>'option_b'(str), <br>'option_c'(str), <br>'option_d'(str), <br>'correct_answer'(str), <br>'hint'(str) 	| Add a new question to the database.            	|
+|     get_hint    	|     GET     	|                                                                         'id'(int)                                                                         	| Get a hint for a specific question.            	|
+|   replace_hint  	|     POST    	|                                                                 'id (int), <br>'hint'(str)                                                                	| Replaces the hint of the existing question.    	|
 
 ## Setup
 
@@ -125,13 +41,13 @@ The server will start, and you can access the API endpoints using the base URL f
 ## Playing the Game
 
 1. Start a new game by sending a GET request to `/millionaire/start_game`.
-2. Retrieve the next question by sending a GET request to `/millionaire/next_question`.
-3. Answer the question by sending a POST request to `/millionaire/answer` with the question `id` and your `answer`.
+2. Retrieve the next question by sending a GET request to `/millionaire/random_question`.
+3. Answer the question by sending a POST request to `/millionaire/answer` with the question `id` and your `answer`. All answers are caps sensitive.
 4. Continue playing until you either answer all questions correctly or provide an incorrect answer.
 
 ## Contributing
 
-Feel free to contribute to this project by adding more questions or hints. You can use the `/millionaire/add_question` endpoint to add new questions to the game and the `/millionaire/add_hint` endpoint to add new hints to the game.
+Feel free to contribute to this project by adding more questions or replacing hints. You can use the `/millionaire/add_question` endpoint to add new questions to the game and the `/millionaire/replace_hint` endpoint to add new hints to the game.
 
 ## Model
 
